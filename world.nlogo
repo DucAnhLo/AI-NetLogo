@@ -4,9 +4,9 @@ ask patches
   [
     if random-float 100 < density
     [ set pcolor green ]
-    if distancexy xcor-object1 ycor-object1 < Object1Size
+    if distancexy (xcor-object1 * 50) (ycor-object1 * 50) < Object1Size
     [ set pcolor violet]
-    if distancexy xcor-object2 ycor-object2 < Object2Size
+    if distancexy (xcor-object2 * 50) (ycor-object2 * 50) < Object2Size
     [ set pcolor magenta]
 
   ]
@@ -21,19 +21,20 @@ end
 
 to go
   P1
-  P2
+  P5
   P3
-  P4
-  ;P5
 end
 
 to P1
-  if pcolor = green
+  ifelse pcolor = green
   [
    set pcolor black
    set color orange
    forward 20
- ]
+  ]
+
+  [P2
+    P1]
 end
 
 to P2
@@ -45,12 +46,14 @@ end
 to P3
   ifelse pcolor = black
   [
-    set pcolor yellow
+    set pcolor green
     set color white
+    P4
   ]
   [
     rt random 360
     fd 1
+    P3
   ]
 end
 
